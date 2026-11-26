@@ -1,0 +1,127 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0b1120;
+    color: #f1f5f9;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Headings */
+
+h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 18px;
+    color: #ffffff;
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #e2e8f0;
+}
+
+p {
+    color: #94a3b8;
+    font-size: 1rem;
+    margin-bottom: 18px;
+}
+
+/* Main content */
+
+body > h1,
+body > h2,
+body > p,
+body > a {
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+body > h1 {
+    margin-top: 70px;
+}
+
+body > h2 {
+    margin-top: 45px;
+}
+
+/* Buttons */
+
+button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 13px 25px;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+    margin-right: 10px;
+}
+
+button:hover {
+    background: #3b82f6;
+    transform: translateY(-2px);
+}
+
+/* Links */
+
+a {
+    text-decoration: none;
+    color: #60a5fa;
+}
+
+a:hover {
+    color: #93c5fd;
+}
+
+/* Forms and inputs */
+
+input {
+    background: #172033;
+    color: white;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 12px;
+    font-family: inherit;
+    outline: none;
+}
+
+input:focus {
+    border-color: #3b82f6;
+}
+
+/* Selection */
+
+::selection {
+    background: #2563eb;
+    color: white;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0b1120;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 10px;
+}
