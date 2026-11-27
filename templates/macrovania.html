@@ -1,14 +1,62 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/mvia-logo.png') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Macrovania | #1 Website for Paper Trading</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <img src="'https://chatgpt.com/s/m_6b0851b538288191b238bff8b8cc3f38.png" alt="Macrovania Logo" class="logo">
 </head>
-</head>
-<body>
 
+<body>
+    <header class="navbar">
+        <img src="{{ url_for('static', filename='images/mvia-logo.png') }}"
+     alt="Macrovania Logo"
+     class="logo">
+        <h2>Macrovania</h2>
+        <nav>
+            <a href="/">Log Out</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#markets">Markets</a>
+        </nav>
+    </header>
+
+    <main class="dashboard">
+        <section class="welcome">
+            <p class="eyebrow">PAPER TRADING DASHBOARD</p>
+            <h1>Welcome to Macrovania.</h1>
+            <p>Real markets. Virtual capital.</p>
+        </section>
+
+        <section class="stats">
+            <div class="stat-card">
+                <p>Portfolio Value</p>
+                <h2>$10,000.00</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>Virtual Cash</p>
+                <h2>$10,000.00</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>Total Return</p>
+                <h2 class="positive">+0.00%</h2>
+            </div>
+        </section>
+
+        <section class="content-card" id="portfolio">
+            <h2>Your Portfolio</h2>
+            <p>Your holdings will appear here.</p>
+        </section>
+
+        <section class="content-card" id="markets">
+            <h2>Market Watch</h2>
+            <p>Track your favorite stocks and market movements.</p>
+        </section>
+    </main>
 </body>
+
+</html>
