@@ -1,8 +1,18 @@
 
 import os
-from flask import Flask, render_template, redirect, url_for, session, request
+from flask import Flask, render_template, redirect, url_for, session, request, jsonify
 from dotenv import load_dotenv
 from authlib.integrations.flask_client import OAuth
+from stocks import STOCKS 
+from main import get_stock_data, API_KEY
+import time
+
+stock_cache = {
+    "prices": {},
+    "last_updated": 0
+}
+
+CACHE_DURATION = 60
 
 load_dotenv()
 
@@ -76,7 +86,7 @@ def google_callback():
 def signup():
     return render_template("signup.html")
 
-#This will route the user to the login page when they access the /login URL. It renders the login.html template.
+#This route will route the user to the login page when they access the /login URL. It renders the login.html template.
 @app.route("/login")
 def login():
     return render_template("login.html")
@@ -91,6 +101,50 @@ def home():
 def macrovania():
     return render_template("macrovania.html")
 
+@app.route("/api/stocks")
+def stock_catalog():
+    return jsonify(STOCKS)
+
+@app.route("/api/stock-prices")
+def stock_prices():
+    current_time = time.time()
+
+    # Check whether cached prices are still fresh
+    if current_time - stock_cache["last_updated"] < CACHE_DURATION:
+        return jsonify(stock_cache["prices"])
+
+    prices = {}
+
+    for ticker in STOCKS:
+        stock_data = get_stock_data(ticker, API_KEY)
+        time.sleep(1.2)
+
+        if stock_data is None:
+            continue
+
+        current_price, quote = stock_data
+        previous_close = quote.get("previous_close")
+        change = None
+        change_percent = None
+
+        if previous_close is not None:
+            change = current_price - previous_close
+            if previous_close != 0:
+                change_percent = (change / previous_close) * 100
+
+        prices[ticker] = {
+            "price": current_price,
+            "previous_close": previous_close,
+            "change": change,
+            "change_percent": change_percent,
+            "latest_trading_day": quote.get("07. latest trading day")
+        }
+
+    # Save the newly retrieved prices
+    stock_cache["prices"] = prices
+    stock_cache["last_updated"] = time.time()
+
+    return jsonify(prices)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -3,60 +3,129 @@
 <html lang="en">
 
 <head>
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/mvia-logo.png') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Macrovania | #1 Website for Paper Trading</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Macrovania | Dashboard</title>
+
+    <link rel="icon" type="image/png"
+        href="{{ url_for('static', filename='images/mvia-logo.png') }}">
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
+
+    <!-- Navigation -->
     <header class="navbar">
-        <img src="{{ url_for('static', filename='images/mvia-logo.png') }}"
-     alt="Macrovania Logo"
-     class="logo">
-        <h2>Macrovania</h2>
+        <div class="brand">
+            <img src="{{ url_for('static', filename='images/mvia-logo.png') }}"
+                alt="Macrovania Logo" class="logo">
+            <h2>Macrovania</h2>
+        </div>
+
         <nav>
-            <a href="/">Log Out</a>
-            <a href="#portfolio">Portfolio</a>
+            <a href="#overview">Overview</a>
             <a href="#markets">Markets</a>
+            <a href="#portfolio">Portfolio</a>
         </nav>
+
+        <div class="nav-status">
+            <span class="status-dot"></span>
+            Market Data
+        </div>
     </header>
 
     <main class="dashboard">
-        <section class="welcome">
-            <p class="eyebrow">PAPER TRADING DASHBOARD</p>
+
+        <!-- Welcome -->
+        <section class="welcome" id="overview">
+            <p class="eyebrow">YOUR FINANCIAL DASHBOARD</p>
             <h1>Welcome to Macrovania.</h1>
             <p>Real markets. Virtual capital.</p>
         </section>
 
+        <!-- Statistics -->
         <section class="stats">
+
             <div class="stat-card">
-                <p>Portfolio Value</p>
+                <p>Virtual Balance</p>
                 <h2>$10,000.00</h2>
+                <span class="stat-description">Starting capital</span>
             </div>
 
             <div class="stat-card">
-                <p>Virtual Cash</p>
-                <h2>$10,000.00</h2>
+                <p>Market Watch</p>
+                <h2>05</h2>
+                <span class="stat-description">Companies tracked</span>
             </div>
 
             <div class="stat-card">
-                <p>Total Return</p>
-                <h2 class="positive">+0.00%</h2>
+                <p>Market Status</p>
+                <h2 class="market-closed">Closed</h2>
+                <span class="stat-description">Next trading session pending</span>
             </div>
+
         </section>
 
-        <section class="content-card" id="portfolio">
-            <h2>Your Portfolio</h2>
-            <p>Your holdings will appear here.</p>
-        </section>
-
+        <!-- Market Watch -->
         <section class="content-card" id="markets">
-            <h2>Market Watch</h2>
-            <p>Track your favorite stocks and market movements.</p>
-        </section>
-    </main>
-</body>
 
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">MARKET OVERVIEW</p>
+                    <h2>Market Watch</h2>
+                    <p>Track your favorite companies and market movements.</p>
+                </div>
+
+                <span class="market-label">
+                    <span class="status-dot"></span>
+                    IEX DATA
+                </span>
+            </div>
+
+            <!-- Search -->
+            <div class="market-controls">
+                <input
+                    type="text"
+                    id="stock-search"
+                    placeholder="Search companies or tickers..."
+                    aria-label="Search stocks">
+            </div>
+
+            <!-- JavaScript populates this area -->
+            <div id="stock-list" class="stock-grid">
+                <p class="loading-message">Loading stocks...</p>
+            </div>
+
+            <p class="market-disclaimer">
+                Market data is provided through Alpaca's IEX feed.
+                Prices may reflect the latest available trade rather than a current trade.
+            </p>
+
+        </section>
+
+        <!-- Portfolio -->
+        <section class="content-card" id="portfolio">
+            <p class="eyebrow">YOUR INVESTMENTS</p>
+            <h2>My Portfolio</h2>
+            <p>Your virtual holdings and portfolio performance will appear here.</p>
+
+            <div class="empty-state">
+                <h3>Your portfolio is waiting.</h3>
+                <p>Start exploring the markets and build your virtual portfolio.</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Macrovania &copy; 2026</p>
+            <p>Real markets. Virtual capital.</p>
+        </footer>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+
+</body>
 </html>
